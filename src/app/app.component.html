@@ -1,3 +1,18 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-layout fullscreen>
+
+  <md-sidenav #sidenav>
+    <md-nav-list></md-nav-list>
+  </md-sidenav>
+
+  <md-toolbar color="primary" class="md-elevation-z4">
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    {{ title }}
+  </md-toolbar>
+
+  <div id="container">
+
+  </div>
+
+</md-sidenav-layout>
