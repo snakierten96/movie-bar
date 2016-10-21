@@ -15,7 +15,8 @@ import { MoviesModule } from './movies';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    MoviesModule
   ],
   providers: [
     Title

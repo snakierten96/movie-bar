@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MovieListService } from './movie-list.service';
+import { OMDbService } from './omdb.service';
 
-describe('Service: MovieList', () => {
+describe('Service: OMDb', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MovieListService]
+      providers: [OMDbService]
     });
   });
 
-  it('should ...', inject([MovieListService], (service: MovieListService) => {
+  it('should ...', inject([OMDbService], (service: OMDbService) => {
     expect(service).toBeTruthy();
   }));
 });

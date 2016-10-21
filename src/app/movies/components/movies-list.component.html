@@ -1,3 +1,11 @@
 <p>
   movies works!
 </p>
+<ul>
+  <li *ngFor="let movie of (response) ? response.movies : []">
+    {{ movie.title_long }}
+  </li>
+</ul>
+<pre>
+{{ response | json }}
+</pre>
