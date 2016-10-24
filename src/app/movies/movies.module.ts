@@ -1,5 +1,7 @@
-import { NgModule }             from '@angular/core';
-import { CommonModule }         from '@angular/common';
+import { NgModule }         from '@angular/core';
+import { CommonModule }     from '@angular/common';
+import { MaterialModule }   from '@angular/material';
+import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import {
   MoviesListComponent
@@ -11,7 +13,9 @@ import {
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule.forRoot(),
+    PaginationModule
   ],
   exports: [
     MoviesListComponent

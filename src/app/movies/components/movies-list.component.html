@@ -1,11 +1,28 @@
-<p>
-  movies works!
-</p>
-<ul>
-  <li *ngFor="let movie of (response) ? response.movies : []">
-    {{ movie.title_long }}
-  </li>
-</ul>
-<pre>
-{{ response | json }}
+<div *ngIf="movies" class="container">
+  <div class="row">
+    <pagination
+        [totalItems]="total" [itemsPerPage]="itemsPerPage"
+        [maxSize]="8" [(ngModel)]="currentPage" [rotate]="false"
+        [boundaryLinks]="true" (numPages)="numPages = $event">
+    </pagination>
+  </div>
+  <div class="row">
+    <div *ngFor="let movie of movies | async"
+          class="col-xs-6 col-sm-3 col-md-5ths">
+      <md-card>
+        <a href="/movie/{{ movie.id }}/{{ movie.slug }}">
+          <img md-card-image [src]="movie.medium_cover_image" [alt]="movie.title" />
+        </a>
+        <md-card-content>
+          <a href="/movie/{{ movie.id }}/{{ movie.slug }}">
+            <h3>{{ movie.title }}</h3>
+          </a>
+          <p class="secondary">{{ movie.year}}</p>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</div>
+<pre *ngIf="movies">
+{{ movies | async | json }}
 </pre>

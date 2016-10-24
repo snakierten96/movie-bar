@@ -13,8 +13,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class MoviesListService {
     
-  //private moviesListUrl: string = 'https://yts.ag/api/v2/list_movies.json';
-  private moviesListUrl: string = '/assets/list_movies.json';
+  private moviesListUrl: string = 'https://yts.ag/api/v2/list_movies.json';
+  //private moviesListUrl: string = '/assets/list_movies.json';
   
   constructor(private http: Http) { }
   

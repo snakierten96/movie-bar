@@ -1,0 +1,66 @@
+$fadeColor: rgba(255,255,255,0.54);
+$highlight: #4caf50;
+
+pagination {
+  margin: 0 auto;
+  display: table;
+}
+
+.pagination>li>a {
+  background-color: inherit;
+}
+
+/*
+.pagination > li > a, .pagination > li > span {
+  color: white;
+  background-color: inherit !important;
+  border: 1px solid $highlight;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span, .pagination> .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: $highlight;
+  border-color: $highlight;
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:focus,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > span, .pagination > .disabled > span:focus,
+.pagination > .disabled > span:hover {
+  color: #777;
+}
+*/
+
+md-card {
+  margin: 8px;
+  max-width: 214px;
+
+  [md-card-image]:first-child {
+    border-radius: 2px 2px 0 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  md-card-content {
+
+    h3 {
+      font-size: 16px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    a:hover {
+      color: $fadeColor; 
+    }
+
+    .secondary {
+      color: $fadeColor;
+    }
+  }
+}
