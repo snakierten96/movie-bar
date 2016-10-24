@@ -1,37 +1,48 @@
 $fadeColor: rgba(255,255,255,0.54);
 $highlight: #4caf50;
 
+$selectors: "a", "a:focus", "a:hover", "span", "span:focus", "span:hover";
+
+@function descendant($list) {
+  $remade: ();
+  @each $item in $list {
+    $item: append(">", $item);
+    $remade: append($remade, $item, comma);
+  }
+  @return $remade;
+}
+
 pagination {
   margin: 0 auto;
   display: table;
 }
 
-.pagination>li>a {
-  background-color: inherit;
+.pagination {
+  
+  > li { 
+    > a, > span {
+      color: white;
+      background-color: inherit;
+      border: 1px solid $highlight;
+    }
+  }
+  
+  > .active {
+    #{ descendant($selectors) } {
+      background-color: $highlight;
+      border-color: $highlight;
+    }
+  }
+  
+  > .disabled {
+    #{ descendant($selectors) } {
+      color: #777;
+      background-color: inherit;
+      border-color: $highlight;
+    }
+  }
+  
 }
-
-/*
-.pagination > li > a, .pagination > li > span {
-  color: white;
-  background-color: inherit !important;
-  border: 1px solid $highlight;
-}
-
-.pagination > .active > a, .pagination > .active > a:focus,
-.pagination > .active > a:hover,
-.pagination > .active > span, .pagination> .active > span:focus,
-.pagination > .active > span:hover {
-  background-color: $highlight;
-  border-color: $highlight;
-}
-
-.pagination > .disabled > a, .pagination > .disabled > a:focus,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > span, .pagination > .disabled > span:focus,
-.pagination > .disabled > span:hover {
-  color: #777;
-}
-*/
 
 md-card {
   margin: 8px;

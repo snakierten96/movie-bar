@@ -1,7 +1,8 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewEncapsulation
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,7 +12,8 @@ import { MoviesListService } from '../services';
   selector: 'mb-movies-list',
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.None
 })
 export class MoviesListComponent implements OnInit {
   
