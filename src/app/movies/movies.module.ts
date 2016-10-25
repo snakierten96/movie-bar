@@ -16,10 +16,6 @@ import { moviesRouting } from './movies.routing';
     MaterialModule.forRoot(),
     PaginationModule
   ],
-  exports: [
-    MoviesListComponent,
-    MovieDetailComponent
-  ],
   declarations: [
     MoviesListComponent,
     MovieDetailComponent

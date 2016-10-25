@@ -20,7 +20,7 @@ export class MovieDetailService {
     params.set('with_cast','true');
 
     return this.http.get(this.movieDetailUrl,{ search: params })
-        .map((res: Response) => res.json().data)
+        .map((res: Response) => res.json().data.movie)
         .catch((err: any) => Observable.throw(err));
   }
 

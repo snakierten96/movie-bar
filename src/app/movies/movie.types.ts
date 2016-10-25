@@ -11,6 +11,13 @@ export interface ITorrent {
   date_uploaded_unix: number
 }
 
+export interface ICast {
+  name: string,
+  character_name: string,
+  url_small_image: string,
+  imdb_code: string
+}
+
 export interface IMovie {
   id: number,
   url: string,
@@ -23,7 +30,10 @@ export interface IMovie {
   rating?: number,
   runtime?: number,
   genres?: string[],
+  download_count?: number,
+  like_count?: number,
   summary?: string,
+  description_intro?: string,
   description_full?: string,
   synopsis?: string,
   yt_trailer_code?: string,
@@ -33,13 +43,20 @@ export interface IMovie {
   backround_image_original?: string,
   small_cover_image?: string,
   large_cover_image?: string,
-  state: string,
+  medium_screenshot_image1?: string,
+  medium_screenshot_image2?: string,
+  medium_screenshot_image3?: string,
+  large_screenshot_image1?: string,
+  large_screenshot_image2?: string,
+  large_screenshot_image3?: string,
+  state?: string,
+  cast?: ICast[],
   torrents?: ITorrent[],
   date_uploaded: string,
   date_uploaded_unix: number
 }
 
-export interface IMovieResponse {
+export interface IMoviesResponse {
   movie_count?: number,
   limit?: number,
   page_number?: number,
