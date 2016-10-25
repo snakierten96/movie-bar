@@ -1,7 +1,9 @@
 $fadeColor: rgba(255,255,255,0.54);
+$lightFade: rgba(255,255,255,0.07);
 $highlight: #4caf50;
 
 $selectors: "a", "a:focus", "a:hover", "span", "span:focus", "span:hover";
+$shortSelectors: "a:hover", "a:focus", "span:hover", "span:focus";
 
 @function descendant($list) {
   $remade: ();
@@ -19,12 +21,23 @@ pagination {
 
 .pagination {
   
-  > li { 
+  > li {
+
     > a, > span {
       color: white;
       background-color: inherit;
-      border: 1px solid $highlight;
+      border: 1px solid $lightFade;
+      margin: 2px;
+      border-radius: 4px;
+      transition: all .2s ease-in-out;
     }
+
+    #{ descendant($shortSelectors) } {
+      color: white;
+      background-color: $highlight;
+      border-color: $highlight;
+    }
+
   }
   
   > .active {
@@ -38,7 +51,7 @@ pagination {
     #{ descendant($selectors) } {
       color: #777;
       background-color: inherit;
-      border-color: $highlight;
+      border-color: $lightFade;
     }
   }
   

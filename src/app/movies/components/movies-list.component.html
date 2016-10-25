@@ -2,6 +2,8 @@
   <div class="row">
     <pagination
         [totalItems]="total" [itemsPerPage]="itemsPerPage"
+        nextText="Next &raquo;" lastText="Last &raquo;"
+        previousText="&laquo; Previous" firstText="&laquo; First"
         [maxSize]="8" [(ngModel)]="currentPage" [rotate]="false"
         [boundaryLinks]="true" (numPages)="numPages = $event">
     </pagination>
