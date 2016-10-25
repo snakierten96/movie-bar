@@ -3,28 +3,30 @@ import { CommonModule }     from '@angular/common';
 import { MaterialModule }   from '@angular/material';
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 
-import {
-  MoviesListComponent
-} from './components';
-import { 
-  MoviesListService,
-  OMDbService
-}    from './services';
+import { MoviesListComponent, MovieDetailComponent } from './components';
+import { MoviesListService, MovieDetailService, OMDbService } from './services';
+
+import { moviesRouting } from './movies.routing';
+
 
 @NgModule({
   imports: [
     CommonModule,
+    moviesRouting,
     MaterialModule.forRoot(),
     PaginationModule
   ],
   exports: [
-    MoviesListComponent
+    MoviesListComponent,
+    MovieDetailComponent
   ],
   declarations: [
-    MoviesListComponent
+    MoviesListComponent,
+    MovieDetailComponent
   ],
   providers: [
     MoviesListService,
+    MovieDetailService,
     OMDbService
   ]
 })

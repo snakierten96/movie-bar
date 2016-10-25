@@ -1,11 +1,13 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { BrowserModule, Title }           from '@angular/platform-browser';
+import { NgModule }                       from '@angular/core';
+import { FormsModule }                    from '@angular/forms';
+import { HttpModule }                     from '@angular/http';
+import { MaterialModule, MdIconRegistry } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies';
+import { HomeModule }   from './home';
+import { routing, appRoutingProviders } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -13,14 +15,23 @@ import { MoviesModule } from './movies';
   ],
   imports: [
     BrowserModule,
+    routing,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    MoviesModule
+    MoviesModule,
+    HomeModule
   ],
   providers: [
-    Title
+    Title,
+    appRoutingProviders
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(mdIconRegistry: MdIconRegistry) {
+    mdIconRegistry.registerFontClassAlias('fontawesome','fa');
+  }
+      
+}

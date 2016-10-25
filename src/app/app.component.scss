@@ -2,3 +2,7 @@
   height: inherit;
   height: calc(100% - 65px);
 }
+
+md-nav-list a[md-list-item], md-nav-list a.md-list-item {
+  text-decoration: none;
+}

@@ -12,11 +12,11 @@
     <div *ngFor="let movie of movies | async"
           class="col-xs-6 col-sm-3 col-md-5ths">
       <md-card>
-        <a href="/movie/{{ movie.id }}/{{ movie.slug }}">
+        <a href="/movie/{{ movie.id }}">
           <img md-card-image [src]="movie.medium_cover_image" [alt]="movie.title" />
         </a>
         <md-card-content>
-          <a href="/movie/{{ movie.id }}/{{ movie.slug }}">
+          <a href="/movie/{{ movie.id }}">
             <h3>{{ movie.title }}</h3>
           </a>
           <p class="secondary">{{ movie.year}}</p>
