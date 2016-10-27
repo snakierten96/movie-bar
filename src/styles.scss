@@ -47,3 +47,7 @@ $theme: md-dark-theme($primary,$accent);
         float: left;
     }
 }
+
+a:hover {
+    text-decoration: none;
+}

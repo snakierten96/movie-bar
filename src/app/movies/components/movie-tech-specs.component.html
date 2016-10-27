@@ -1,0 +1,30 @@
+<tabset>
+	<tab *ngFor="let torrent of torrents" [heading]="torrent.quality">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="inner">
+					<md-icon>folder</md-icon>
+					{{ torrent.size }}
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="inner">
+					<md-icon>zoom_out_map</md-icon>
+					{{ torrent.quality }}
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="inner">
+					<md-icon>volume_up</md-icon>
+					{{ language }}
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="inner">
+					<md-icon>tv</md-icon>
+					{{ language }}
+				</div>
+			</div>
+		</div>
+	</tab>
+</tabset>

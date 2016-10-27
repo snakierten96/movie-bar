@@ -1,6 +1,64 @@
-<p>
-  movie-detail works!
-</p>
+<div *ngIf="movie" id="movie-content" class="container">
+  <div class="row">
+
+    <div id="movie-poster" class="col-md-3">
+      <img class="md-elevation-z2" [src]="movie.medium_cover_image" [alt]="movie.title_long" />
+      <button md-raised-button color="accent">
+        <md-icon>file_download</md-icon>
+        <span>Download</span>
+      </button>
+    </div>
+
+    <div id="movie-info" class="col-md-5 col-md-offset-1">
+      <div>
+        <h1>{{ movie.title }}</h1>
+        <h2>{{ movie.year }}</h2>
+        <h2>{{ movie.genres.slice(0,2).join(" / ") }}</h2>
+      </div>
+      <p>
+        <em>Available in: &nbsp;</em>
+        <a *ngFor="let torrent of movie.torrents"
+            [href]="torrent.url" rel="nofollow">{{ torrent.quality }}</a>
+      </p>
+    </div>
+
+    <div id="movie-related" class="col-md-3">
+      <mb-movie-suggestions [movieId]="movie.id"></mb-movie-suggestions>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="synopsis" class="col-md-7">
+      <h3>Synopsis</h3>
+      <p>{{ movie.description_intro }}</p>
+    </div>
+
+    <div id="crew" class="col-md-4 col-md-offset-1">
+      <div class="actors">
+        <h3>Cast</h3>
+        <md-list>
+          <md-list-item *ngFor="let item of movie.cast">
+            <a md-list-avatar href="http://www.imdb.com/name/nm{{ item.imdb_code }}" target="_blank">
+              <img md-list-avatar *ngIf="item.url_small_image" [src]="item.url_small_image" alt="" />
+              <md-icon md-list-avatar *ngIf="!item.url_small_image">person</md-icon>
+            </a>
+            <p md-line>
+              <a href="/browse/{{ item.name }}">{{ item.name }}</a>
+              &nbsp;as {{ item.character_name }}
+            </p>
+          </md-list-item>
+        </md-list>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <mb-movie-tech-specs 
+        [language]="movie.language"
+        [torrents]="movie.torrents">
+    </mb-movie-tech-specs>
+  </div>
+</div>
 <pre>
 {{ movie | json }}
 </pre>

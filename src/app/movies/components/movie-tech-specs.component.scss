@@ -1,0 +1,51 @@
+$text-color: #919191;
+$back-color: rgba(27, 27, 35, 0.4);
+
+
+.tab-content {
+  >.active {
+    color: $text-color;
+    background-color: $back-color;
+    border-radius: 4px;
+    padding: 15px;
+  }
+
+  .inner {
+    padding: 0 10px 10px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  md-icon.material-icons {
+    font-size: 20px;
+    vertical-align: middle;
+  }
+
+}
+
+.nav-tabs {
+
+  color: $text-color;
+  border-bottom: none;
+
+  > li {
+    margin: 0;
+    > a {
+      border: none;
+      color: $text-color;
+      transition: color .15s ease-in-out;
+    }
+
+    > a:hover {
+      color: #fff;
+      background-color: $back-color;
+    }
+  }
+
+  > li.active {
+    > a, > a:hover, > a:focus {
+      color: #fff;
+      background-color: $back-color;
+      border: none;
+    }
+  }
+}

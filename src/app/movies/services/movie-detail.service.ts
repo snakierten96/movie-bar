@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { IMovie } from '../movie.types';
+
 @Injectable()
 export class MovieDetailService {
 
@@ -20,7 +22,7 @@ export class MovieDetailService {
     params.set('with_cast','true');
 
     return this.http.get(this.movieDetailUrl,{ search: params })
-        .map((res: Response) => res.json().data.movie)
+        .map((res: Response) => <IMovie>res.json().data.movie)
         .catch((err: any) => Observable.throw(err));
   }
 
