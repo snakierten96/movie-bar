@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { IMovie } from '../movie.types';
+import { MOVIE_ID, WITH_IMAGES, WITH_CAST, TRUE } from './constants';
 
 @Injectable()
 export class MovieDetailService {
@@ -17,9 +18,9 @@ export class MovieDetailService {
 
   getMovie(id: string) {
     let params : URLSearchParams = new URLSearchParams();
-    params.set('movie_id',id);
-    params.set('with_images','true');
-    params.set('with_cast','true');
+    params.set(MOVIE_ID,id);
+    params.set(WITH_IMAGES,TRUE);
+    params.set(WITH_CAST,TRUE);
 
     return this.http.get(this.movieDetailUrl,{ search: params })
         .map((res: Response) => <IMovie>res.json().data.movie)

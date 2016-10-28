@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { MOVIE_ID } from './constants';
+
 @Injectable()
 export class MovieSuggestionsService {
 
@@ -14,7 +16,7 @@ export class MovieSuggestionsService {
 
   getSuggestions (id: string) {
     let params : URLSearchParams = new URLSearchParams();
-    params.set('movie_id',id);
+    params.set(MOVIE_ID,id);
 
     return this.http.get(this.movieSuggestionsUrl,{ search: params })
       .map((res: Response) => res.json().data.movies)
