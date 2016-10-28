@@ -1,7 +1,7 @@
 <div class="row">
   <h3>Similar Movies</h3>
   <div *ngFor="let movie of movies" class="col-md-6">
-    <a class="md-elevation-z2" href="/movie/{{movie.id}}">
+    <a class="md-elevation-z2" [routerLink]="['/movie',movie.id]">
       <img [src]="movie.medium_cover_image" alt="" />
     </a>
   </div>

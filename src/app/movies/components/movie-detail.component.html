@@ -43,7 +43,7 @@
               <md-icon md-list-avatar *ngIf="!item.url_small_image">person</md-icon>
             </a>
             <p md-line>
-              <a href="/browse/{{ item.name }}">{{ item.name }}</a>
+              <a [routerLink]="['/browse',item.name]">{{ item.name }}</a>
               &nbsp;as {{ item.character_name }}
             </p>
           </md-list-item>
