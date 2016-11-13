@@ -10,6 +10,12 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent {
   private title: string = "Movie Bar";
 
+  navItems: Object[] = [
+    { path: ['/'], description: 'Home', icon: 'home' },
+    { path: ['/', 'browse'], description: 'Browse Movies', icon: 'camera_roll' },
+    { path: ['/', 'movie'], description: 'Movie Detail', icon: 'fingerprint' }
+  ];
+
   constructor(private titleService: Title) {
     this.titleService.setTitle(this.title);
   }
