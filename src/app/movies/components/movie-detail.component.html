@@ -23,7 +23,7 @@
     </div>
 
     <div id="movie-related" class="col-md-3">
-      <mb-movie-suggestions [movieId]="movie.id"></mb-movie-suggestions>
+      <mb-movie-suggestions [movies]="movie.suggestions | async"></mb-movie-suggestions>
     </div>
   </div>
 
@@ -59,6 +59,8 @@
     </mb-movie-tech-specs>
   </div>
 </div>
+<!-- TODO: Add serialized method for inspection
 <pre>
 {{ movie | json }}
 </pre>
+-->

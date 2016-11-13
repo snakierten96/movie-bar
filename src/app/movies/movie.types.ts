@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 
 export interface ITorrent {
   url: string,
@@ -51,6 +52,7 @@ export interface IMovie {
   large_screenshot_image3?: string,
   state?: string,
   cast?: ICast[],
+  suggestions?: Observable<IMovie>,
   torrents?: ITorrent[],
   date_uploaded: string,
   date_uploaded_unix: number

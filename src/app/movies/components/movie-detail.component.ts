@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MovieDetailService } from '../services';
+import { MovieDetailCombinedService } from '../services';
 
 import { IMovie } from '../movie.types';
 
@@ -17,7 +17,7 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(
     private titleService : Title,
-    private movieDetailService : MovieDetailService,
+    private movieDetailCombinedService: MovieDetailCombinedService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   loadMovie(id: string) {
-    this.movieDetailService.getMovie(id).subscribe(
+    this.movieDetailCombinedService.getMovie(id).subscribe(
       (response : IMovie) => this.movie = response,
       err => console.log(err),
       () => this.titleService.setTitle([this.movie.title_long,'Movie Bar'].join(" :: "))

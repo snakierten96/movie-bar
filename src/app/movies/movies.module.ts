@@ -12,6 +12,7 @@ import {
 import {
   MoviesListService,
   MovieDetailService,
+  MovieDetailCombinedService,
   MovieSuggestionsService,
   OMDbService
 } from './services';
@@ -35,6 +36,7 @@ import { moviesRouting } from './movies.routing';
   providers: [
     MoviesListService,
     MovieDetailService,
+    MovieDetailCombinedService,
     MovieSuggestionsService,
     OMDbService
   ]

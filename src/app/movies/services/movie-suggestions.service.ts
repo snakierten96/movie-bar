@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { MOVIE_ID } from './constants';
+import { IMovie } from '../movie.types';
 
 @Injectable()
 export class MovieSuggestionsService {
@@ -14,12 +15,12 @@ export class MovieSuggestionsService {
 
   constructor(private http: Http) { }
 
-  getSuggestions (id: string) {
+  getSuggestions (id: string): Observable<IMovie> {
     let params : URLSearchParams = new URLSearchParams();
     params.set(MOVIE_ID,id);
 
     return this.http.get(this.movieSuggestionsUrl,{ search: params })
-      .map((res: Response) => res.json().data.movies)
+      .map((res: Response) => <IMovie>res.json().data.movies)
       .catch((err: any) => Observable.throw(err));
   }
 

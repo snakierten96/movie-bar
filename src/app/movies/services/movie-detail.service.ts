@@ -16,7 +16,7 @@ export class MovieDetailService {
 
   constructor(private http: Http) { }
 
-  getMovie(id: string) {
+  getMovie(id: string): Observable<IMovie> {
     let params : URLSearchParams = new URLSearchParams();
     params.set(MOVIE_ID,id);
     params.set(WITH_IMAGES,TRUE);
