@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { MoviesListService } from '../services';
+import { MoviesListService } from '../../services';
 
 @Component({
   selector: 'mb-movies-list',

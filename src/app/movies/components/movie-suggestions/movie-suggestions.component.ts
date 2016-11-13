@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
-import { IMovie } from '../movie.types';
+import { IMovie } from '../../movie.types';
 
 @Component({
   selector: 'mb-movie-suggestions',

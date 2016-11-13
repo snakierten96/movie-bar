@@ -3,8 +3,8 @@ import { Component, OnInit, ViewEncapsulation,
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { IMovie } from '../movie.types';
-import { MovieDetailCombinedService } from '../services';
+import { IMovie } from '../../movie.types';
+import { MovieDetailCombinedService } from '../../services';
 
 @Component({
   selector: 'mb-movie-detail',

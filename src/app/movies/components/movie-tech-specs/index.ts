@@ -1,0 +1,1 @@
+export * from './movie-tech-specs.component';
