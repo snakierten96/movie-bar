@@ -1,9 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy,
+  ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
 
 import { MoviesListService } from '../../services';
@@ -12,7 +9,7 @@ import { MoviesListService } from '../../services';
   selector: 'mb-movies-list',
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class MoviesListComponent implements OnInit {
@@ -23,7 +20,9 @@ export class MoviesListComponent implements OnInit {
   currentPage: number;
   movies: Observable<Object[]>;
   
-  constructor(private moviesListService: MoviesListService) { }
+  constructor(
+    private cd: ChangeDetectorRef,
+    private moviesListService: MoviesListService) { }
 
   ngOnInit() {
     this.loadMovies();
@@ -37,9 +36,9 @@ export class MoviesListComponent implements OnInit {
         this.currentPage = response.page_number,
         this.movies = Observable.from( [response.movies] )
       },
-      err => {
-        console.log(err);
-    });
+      err => console.log(err),
+      () => this.cd.markForCheck()
+    );
   }
 
 }
