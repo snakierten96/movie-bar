@@ -37,7 +37,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('leave detail');
     this.routeData.unsubscribe();
   }
 

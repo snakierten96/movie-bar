@@ -42,7 +42,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('leave list');
     this.routeData.unsubscribe();
   } 
 
