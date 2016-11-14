@@ -20,7 +20,7 @@ export class MovieSuggestionsService {
     params.set(MOVIE_ID,id);
 
     return this.http.get(this.movieSuggestionsUrl,{ search: params })
-      .map((res: Response) => <IMovie>res.json().data.movies)
+      .flatMap((res: Response) => Observable.from(res.json().data.movies))
       .catch((err: any) => Observable.throw(err));
   }
 

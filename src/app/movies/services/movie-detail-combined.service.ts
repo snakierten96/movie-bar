@@ -15,9 +15,13 @@ export class MovieDetailCombinedService {
 
   getMovie(id: string): Observable<IMovie> {
     return this.movieDetailService.getMovie(id)
-      .map((movie: IMovie) => {
-        movie.suggestions = this.movieSuggestionsService.getSuggestions(id)
-        return movie;
+      .flatMap((movie: IMovie) => {
+        
+        return this.movieSuggestionsService.getSuggestions(id).toArray()
+          .map(suggestions => {
+            movie.suggestions = suggestions;
+            return movie;
+          });
       });
   }
 

@@ -52,7 +52,7 @@ export interface IMovie {
   large_screenshot_image3?: string,
   state?: string,
   cast?: ICast[],
-  suggestions?: Observable<IMovie>,
+  suggestions?: IMovie[],
   torrents?: ITorrent[],
   date_uploaded: string,
   date_uploaded_unix: number
