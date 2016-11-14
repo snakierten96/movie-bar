@@ -9,7 +9,7 @@
     </pagination>
   </div>
   <div class="row">
-    <div *ngFor="let movie of movies | async"
+    <div *ngFor="let movie of movies"
           class="col-xs-6 col-sm-3 col-md-5ths">
       <md-card>
         <a [routerLink]="['/movie',movie.id]">
@@ -26,5 +26,5 @@
   </div>
 </div>
 <pre *ngIf="movies">
-{{ movies | async | json }}
+{{ movies | json }}
 </pre>

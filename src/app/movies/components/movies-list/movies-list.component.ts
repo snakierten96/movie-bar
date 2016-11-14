@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy,
-  ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy,
+  ChangeDetectionStrategy,  ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable }   from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
-import { MoviesListService } from '../../services';
+import { IMovie, IMoviesResponse } from '../../movie.types';
 
 @Component({
   selector: 'mb-movies-list',
@@ -12,33 +14,36 @@ import { MoviesListService } from '../../services';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class MoviesListComponent implements OnInit {
+export class MoviesListComponent implements OnInit, OnDestroy {
   
   loading: boolean;
+  routeData: Subscription;
+
   total: number;
   itemsPerPage: number;
   currentPage: number;
-  movies: Observable<Object[]>;
+  movies: IMovie[];
   
   constructor(
     private cd: ChangeDetectorRef,
-    private moviesListService: MoviesListService) { }
+    private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.loadMovies();
-  }
-  
-  loadMovies () {
-    this.moviesListService.getMovies().subscribe(
-      response => {
-        this.total = response.movie_count,
-        this.itemsPerPage = response.limit,
-        this.currentPage = response.page_number,
-        this.movies = Observable.from( [response.movies] )
+  ngOnInit(): void {
+    this.routeData = this.route.data.subscribe(
+      (data: { res: IMoviesResponse } ) => {
+        this.total = data.res.movie_count;
+        this.itemsPerPage = data.res.limit;
+        this.currentPage = data.res.page_number;
+        this.movies = data.res.movies;
+        this.cd.markForCheck();
       },
-      err => console.log(err),
-      () => this.cd.markForCheck()
+      err => console.error(err)
     );
   }
+
+  ngOnDestroy(): void {
+    console.log('leave list');
+    this.routeData.unsubscribe();
+  } 
 
 }

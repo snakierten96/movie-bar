@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewEncapsulation,
+import { Component, OnInit, OnDestroy, ViewEncapsulation,
          ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Title }          from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+
+import { Observable }   from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { IMovie } from '../../movie.types';
-import { MovieDetailCombinedService } from '../../services';
 
 @Component({
   selector: 'mb-movie-detail',
@@ -13,32 +15,30 @@ import { MovieDetailCombinedService } from '../../services';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent implements OnInit, OnDestroy {
 
   movie: IMovie;
+  routeData: Subscription;
 
   constructor(
     private cd: ChangeDetectorRef,
     private titleService : Title,
-    private movieDetailCombinedService: MovieDetailCombinedService,
     private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      let id = params['id'];
-      this.loadMovie(id);
-    });
-  }
-
-  loadMovie(id: string) {
-    this.movieDetailCombinedService.getMovie(id).subscribe(
-      (response : IMovie) => this.movie = response,
-      err => console.log(err),
-      () => { 
+  ngOnInit(): void {
+    this.routeData = this.route.data.subscribe(
+      (data: { movie: IMovie }) => { 
+        this.movie = data.movie;
         this.titleService.setTitle([this.movie.title_long,'Movie Bar'].join(" :: "));
         this.cd.markForCheck();
-      }
+      },
+      err => console.error(err)
     );
+  }
+
+  ngOnDestroy(): void {
+    console.log('leave detail');
+    this.routeData.unsubscribe();
   }
 
 }

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+import { IMoviesResponse } from '../movie.types';
 
 @Injectable()
 export class MoviesListService {
@@ -14,7 +15,7 @@ export class MoviesListService {
   
   constructor(private http: Http) { }
   
-  getMovies (): Observable<any> {
+  getMovies (): Observable<IMoviesResponse> {
     return this.http.get(this.moviesListUrl)
                     .map(this.extractData)
                     .catch(this.handleError);
