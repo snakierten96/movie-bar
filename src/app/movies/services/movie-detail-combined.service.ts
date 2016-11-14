@@ -13,10 +13,10 @@ export class MovieDetailCombinedService {
     private movieDetailService: MovieDetailService,
     private movieSuggestionsService: MovieSuggestionsService) { }
 
-  getMovie(id: string): Observable<any> {
+  getMovie(id: string): Observable<IMovie> {
     return this.movieDetailService.getMovie(id)
-      .map(movie => {
-        movie.suggestions = this.movieSuggestionsService.getSuggestions(id);
+      .map((movie: IMovie) => {
+        movie.suggestions = this.movieSuggestionsService.getSuggestions(id)
         return movie;
       });
   }
