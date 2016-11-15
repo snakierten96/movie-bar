@@ -1,5 +1,8 @@
 <md-sidenav-layout fullscreen>
-
+  <div class="loading-overlay" *ngIf="loading">
+    <md-spinner color="accent"></md-spinner>
+    <p>Loading...</p>
+  </div>
   <md-sidenav #sidenav>
     <md-nav-list>
       <a *ngFor="let item of navItems"
