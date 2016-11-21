@@ -44,6 +44,7 @@ export interface IMovie {
   backround_image_original?: string,
   small_cover_image?: string,
   large_cover_image?: string,
+  medium_cover_image?: string,
   medium_screenshot_image1?: string,
   medium_screenshot_image2?: string,
   medium_screenshot_image3?: string,

@@ -8,10 +8,15 @@ import { AppComponent } from './app.component';
 import { MoviesModule } from './movies';
 import { HomeModule }   from './home';
 import { routing, appRoutingProviders } from './app.routing';
+import { DynContentComponent } from './dyn-content';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DynContentComponent
+  ],
+  entryComponents: [
+    DynContentComponent
   ],
   imports: [
     BrowserModule,

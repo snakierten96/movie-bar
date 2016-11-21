@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { PAGE, LIMIT } from './constants';
 import { IMoviesResponse } from '../movie.types';
 
 @Injectable()
@@ -15,8 +16,11 @@ export class MoviesListService {
   
   constructor(private http: Http) { }
   
-  getMovies (): Observable<IMoviesResponse> {
-    return this.http.get(this.moviesListUrl)
+  getMovies (page: number = 1, items: number = 50): Observable<IMoviesResponse> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set(PAGE,`${page}`);
+    params.set(LIMIT, `${items}`);
+    return this.http.get(this.moviesListUrl,{ search: params })
                     .map(this.extractData)
                     .catch(this.handleError);
   }

@@ -8,7 +8,7 @@ const moviesRoutes: Routes = [
     component: MoviesListComponent,
     resolve: {
       res: MoviesListResolveService
-    }
+    }    
   },
   { 
     path: 'movie/:id',
