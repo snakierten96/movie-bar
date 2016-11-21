@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, Event, NavigationStart, 
          NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { Overlay, OverlayRef, OverlayState, OVERLAY_PROVIDERS } from '@angular/material';
 
 @Component({
   selector: 'mb-root',
@@ -18,12 +19,12 @@ export class AppComponent {
     { path: ['/', 'movie'], description: 'Movie Detail', icon: 'fingerprint' }
   ];
 
-  constructor(private router: Router, private titleService: Title) {
+  constructor(private router: Router, private titleService: Title, private _overlay: Overlay) {
     this.titleService.setTitle(this.title);
-    router.events.subscribe((event: Event) => this.navigationInterceptor(event));
+    router.events.subscribe((event: Event) => this._navigationInterceptor(event));
   }
 
-  navigationInterceptor(event: Event): void {
+  private _navigationInterceptor(event: Event): void {
 
     if (event instanceof NavigationStart) {
       this.loading = true;
@@ -32,6 +33,23 @@ export class AppComponent {
       this.loading = false;
     }
 
+  }
+  
+  private _getOverlayState (): OverlayState {
+    let state = new OverlayState();
+    
+    state.hasBackdrop = true;
+    state.positionStrategy = this._overlay.position()
+        .global()
+        .centerHorizontally()
+        .centerVertically();
+        
+    return state;
+  }
+  
+  private _createOverlay (): OverlayRef {
+    let overlayState = this._getOverlayState();
+    return this._overlay.create(overlayState);
   }
 
 }
