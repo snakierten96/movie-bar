@@ -35,6 +35,8 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 ## TODO
 
 - Add overlay effect while loading
+- Add fade transition between routes
+- Make fade transition work between detail data change
 - Add hover effects to browse movie details
 - Add download options dialog to movie details
 - Seperate components in browse detail

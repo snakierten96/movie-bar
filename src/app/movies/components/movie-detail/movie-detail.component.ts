@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation,
-         ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+         ChangeDetectionStrategy, ChangeDetectorRef,
+         trigger, state, style, transition, animate } from '@angular/core';
 import { Title }          from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,7 +14,25 @@ import { IMovie } from '../../movie.types';
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations:[
+    trigger('routeAnimation', [
+      state('*',style({ opacity: 1, transform: 'scale(1)' })),
+      transition(':enter', [ 
+        style({ 
+          opacity: 0, 
+          transform: 'scale(.95)'
+        }), 
+        animate('1s ease-in')
+      ]),
+      transition(':leave', [
+        animate('1s ease-out', style({
+          opacity: 0,
+          transform: 'scale(.95)'
+        }))
+      ])
+    ])
+  ]
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
 

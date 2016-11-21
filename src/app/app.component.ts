@@ -2,7 +2,17 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, Event, NavigationStart, 
          NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+<<<<<<< HEAD
 import { Overlay, OverlayRef, OverlayState, OVERLAY_PROVIDERS } from '@angular/material';
+=======
+import { Overlay, OverlayState, OverlayRef, Portal, ComponentPortal } from '@angular/material';
+
+//import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/distinctUntilChanged';
+
+import { DynContentComponent } from './dyn-content';
+>>>>>>> 27105e9069759a9faf0d4602bce556668d3dac06
 
 @Component({
   selector: 'mb-root',
@@ -11,7 +21,7 @@ import { Overlay, OverlayRef, OverlayState, OVERLAY_PROVIDERS } from '@angular/m
 })
 export class AppComponent {
   private title: string = "Movie Bar";
-  loading: boolean = true;
+  loadingState: Subject<boolean> = new Subject<boolean>();
 
   navItems: Object[] = [
     { path: ['/'], description: 'Home', icon: 'home' },
@@ -19,18 +29,41 @@ export class AppComponent {
     { path: ['/', 'movie'], description: 'Movie Detail', icon: 'fingerprint' }
   ];
 
+<<<<<<< HEAD
   constructor(private router: Router, private titleService: Title, private _overlay: Overlay) {
     this.titleService.setTitle(this.title);
     router.events.subscribe((event: Event) => this._navigationInterceptor(event));
   }
 
   private _navigationInterceptor(event: Event): void {
+=======
+  constructor ( private router: Router, private titleService: Title,
+    private _overlay: Overlay) {
+
+    let overlayRef = this._createOverlay();
+    let portal = new ComponentPortal(DynContentComponent);
+    this.loadingState.next(true);
+
+    this.titleService.setTitle(this.title);
+    router.events.subscribe((event: Event) => this._navigationInterceptor(event));
+    this.loadingState.distinctUntilChanged().subscribe((loading) => {
+      if (loading) {
+        overlayRef.attach(portal);
+      } else {
+        overlayRef.detach();
+      }
+    })
+
+  }
+
+  private _navigationInterceptor (event: Event): void {
+>>>>>>> 27105e9069759a9faf0d4602bce556668d3dac06
 
     if (event instanceof NavigationStart) {
-      this.loading = true;
+      this.loadingState.next(true);
     }
     if (event instanceof (NavigationEnd || NavigationCancel || NavigationError)) {
-      this.loading = false;
+      this.loadingState.next(false);
     }
 
   }
@@ -50,6 +83,23 @@ export class AppComponent {
   private _createOverlay (): OverlayRef {
     let overlayState = this._getOverlayState();
     return this._overlay.create(overlayState);
+  }
+
+  private _createOverlay (): OverlayRef {
+    let overlayState = this._getOverlayState();
+    return this._overlay.create(overlayState);
+  }
+
+  private _getOverlayState (): OverlayState {
+    let state = new OverlayState();
+
+    state.hasBackdrop = true;
+    state.positionStrategy = this._overlay.position()
+        .global()
+        .centerHorizontally()
+        .centerVertically();
+
+    return state;
   }
 
 }
