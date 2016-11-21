@@ -72,21 +72,4 @@ export class AppComponent {
     return this._overlay.create(overlayState);
   }
 
-  private _createOverlay (): OverlayRef {
-    let overlayState = this._getOverlayState();
-    return this._overlay.create(overlayState);
-  }
-
-  private _getOverlayState (): OverlayState {
-    let state = new OverlayState();
-
-    state.hasBackdrop = true;
-    state.positionStrategy = this._overlay.position()
-        .global()
-        .centerHorizontally()
-        .centerVertically();
-
-    return state;
-  }
-
 }
