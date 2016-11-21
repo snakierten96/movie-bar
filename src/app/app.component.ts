@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, Event, NavigationStart, 
          NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-<<<<<<< HEAD
-import { Overlay, OverlayRef, OverlayState, OVERLAY_PROVIDERS } from '@angular/material';
-=======
 import { Overlay, OverlayState, OverlayRef, Portal, ComponentPortal } from '@angular/material';
 
 //import { Observable } from 'rxjs/Observable';
@@ -12,7 +9,6 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { DynContentComponent } from './dyn-content';
->>>>>>> 27105e9069759a9faf0d4602bce556668d3dac06
 
 @Component({
   selector: 'mb-root',
@@ -29,14 +25,6 @@ export class AppComponent {
     { path: ['/', 'movie'], description: 'Movie Detail', icon: 'fingerprint' }
   ];
 
-<<<<<<< HEAD
-  constructor(private router: Router, private titleService: Title, private _overlay: Overlay) {
-    this.titleService.setTitle(this.title);
-    router.events.subscribe((event: Event) => this._navigationInterceptor(event));
-  }
-
-  private _navigationInterceptor(event: Event): void {
-=======
   constructor ( private router: Router, private titleService: Title,
     private _overlay: Overlay) {
 
@@ -57,7 +45,6 @@ export class AppComponent {
   }
 
   private _navigationInterceptor (event: Event): void {
->>>>>>> 27105e9069759a9faf0d4602bce556668d3dac06
 
     if (event instanceof NavigationStart) {
       this.loadingState.next(true);
