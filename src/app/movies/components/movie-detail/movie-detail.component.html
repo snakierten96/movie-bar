@@ -13,7 +13,7 @@
       <div>
         <h1>{{ movie.title }}</h1>
         <h2>{{ movie.year }}</h2>
-        <h2>{{ movie.genres.slice(0,2).join(" / ") }}</h2>
+        <h2>{{ getGenreTitle() }}</h2>
       </div>
       <p>
         <em>Available in: &nbsp;</em>
@@ -37,14 +37,14 @@
       <div class="actors">
         <h3>Cast</h3>
         <md-list>
-          <md-list-item *ngFor="let item of movie.cast">
-            <a md-list-avatar href="http://www.imdb.com/name/nm{{ item.imdb_code }}" target="_blank">
-              <img md-list-avatar *ngIf="item.url_small_image" [src]="item.url_small_image" alt="" />
-              <md-icon md-list-avatar *ngIf="!item.url_small_image">person</md-icon>
+          <md-list-item *ngFor="let actor of movie.cast">
+            <a md-list-avatar href="http://www.imdb.com/name/nm{{ actor.imdb_code }}" target="_blank">
+              <img md-list-avatar *ngIf="actor.url_small_image" [src]="actor.url_small_image" alt="" />
+              <md-icon md-list-avatar *ngIf="!actor.url_small_image">person</md-icon>
             </a>
             <p md-line>
-              <a [routerLink]="['/browse',item.name]">{{ item.name }}</a>
-              &nbsp;as {{ item.character_name }}
+              <a [routerLink]="['/browse',actor.name]">{{ actor.name }}</a>
+              &nbsp;as {{ actor.character_name }}
             </p>
           </md-list-item>
         </md-list>
@@ -62,4 +62,3 @@
 <pre>
 {{ movie | json }}
 </pre>
-

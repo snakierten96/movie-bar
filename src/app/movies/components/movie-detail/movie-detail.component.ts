@@ -44,7 +44,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     private titleService : Title,
     private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.routeData = this.route.data.subscribe(
       (data: { movie: IMovie }) => { 
         this.movie = data.movie;
@@ -55,8 +55,12 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy (): void {
     this.routeData.unsubscribe();
+  }
+
+  getGenreTitle (): string  {
+    return this.movie.genres.slice(0,2).join(" / ");
   }
 
 }
