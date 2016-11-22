@@ -7,7 +7,8 @@ import {
   MoviesListComponent,
   MovieDetailComponent,
   MovieSuggestionsComponent,
-  MovieTechSpecsComponent
+  MovieTechSpecsComponent,
+  MoviesListImageDirective
 } from './components';
 import {
   MoviesListService,
@@ -33,7 +34,8 @@ import { moviesRouting } from './movies.routing';
     MoviesListComponent,
     MovieDetailComponent,
     MovieSuggestionsComponent,
-    MovieTechSpecsComponent
+    MovieTechSpecsComponent,
+    MoviesListImageDirective
   ],
   providers: [
     MoviesListService,

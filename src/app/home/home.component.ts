@@ -1,5 +1,6 @@
 import { Component, OnInit,
          trigger, state, style, transition, animate } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -27,9 +28,10 @@ import { Component, OnInit,
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle(['Home','Movie Bar'].join(" :: "));
   }
 
 }

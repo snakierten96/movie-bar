@@ -12,7 +12,7 @@
     <div *ngFor="let movie of movies"
           class="col-xs-6 col-sm-3 col-md-5ths">
       <md-card>
-        <a [routerLink]="['/movie',movie.id]">
+        <a *mbMoviesListImage="movie" [routerLink]="['/movie',movie.id]">
           <img md-card-image [src]="movie.medium_cover_image" [alt]="movie.title" />
         </a>
         <md-card-content>
