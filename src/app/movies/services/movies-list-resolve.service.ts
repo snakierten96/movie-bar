@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/concatMap';
 
 import { loadImage } from './constants';
-import { IMoviesResponse } from '../movie.types';
+import { IMovie, IMoviesResponse } from '../movie.types';
 import { MoviesListService } from './movies-list.service';
 
 @Injectable()
@@ -17,9 +18,15 @@ export class MoviesListResolveService implements Resolve<Observable<IMoviesRespo
       .flatMap((response: IMoviesResponse) => {
         let urlList = response.movies.map(x => x.medium_cover_image);
         return Observable.from(urlList)
-          .flatMap(loadImage)
+          .concatMap(loadImage)
           .toArray()
-          .map(() => response);
+          .map(images => {
+            response.movies = <IMovie[]>response.movies.map((x, idx) => {
+              x.medium_cover_image = <string>images[idx];
+              return x;
+            });
+            return response;
+          });
       });
   }
 

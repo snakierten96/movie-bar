@@ -32,7 +32,7 @@ import { IMovie, IMoviesResponse } from '../../movie.types';
         }))
       ])
     ])
-  ]
+  ],
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
 

@@ -1,0 +1,14 @@
+<md-card [@routeAnimation]="true">
+  <a [routerLink]="['/movie',movie.id]">
+    <img md-card-image [src]="movie.medium_cover_image" [alt]="movie.title" />
+    <div class="image-overlay">
+      <h4>{{ movie.rating }}</h4>
+    </div>
+  </a>
+  <md-card-content>
+    <a [routerLink]="['/movie',movie.id]">
+      <h3>{{ movie.title }}</h3>
+    </a>
+    <p class="secondary">{{ movie.year}}</p>
+  </md-card-content>
+</md-card>

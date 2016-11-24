@@ -9,11 +9,22 @@
     </pagination>
   </div>
   <div class="row">
+    <!--
+    <mb-movies-list-item *ngFor="let movie of movies"
+          [movie]="movie"
+          class="col-xs-6 col-sm-3 col-md-5ths">
+    </mb-movies-list-item>
+    -->
     <div *ngFor="let movie of movies"
           class="col-xs-6 col-sm-3 col-md-5ths">
       <md-card>
-        <a *mbMoviesListImage="movie" [routerLink]="['/movie',movie.id]">
-          <img md-card-image [src]="movie.medium_cover_image" [alt]="movie.title" />
+        <a [routerLink]="['/movie',movie.id]">
+          <img *ngIf="movie.medium_cover_image" 
+               md-card-image [src]="movie.medium_cover_image" [alt]="movie.title" />
+          <md-icon *ngIf="!movie.medium_cover_image">broken_image</md-icon>
+          <div class="image-overlay">
+            <h4>{{ movie.rating }}</h4>
+          </div>
         </a>
         <md-card-content>
           <a [routerLink]="['/movie',movie.id]">

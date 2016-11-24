@@ -9,18 +9,17 @@ export const WITH_CAST = 'with_cast';
 export const TRUE = 'true';
 export const FALSE = 'false';
 
-export const loadImage = (imagePath) => {
+export const loadImage = (imagePath: string) => {
   return Observable.create(
-    (observer: Subscriber<any>) => {
+    (observer: Subscriber<string | null>) => {
       var img = new Image();
       img.src = imagePath;
       img.onload = () => {
-        observer.next(img);
+        observer.next(imagePath);
         observer.complete();
       }
       img.onerror = (err) => {
-        //observer.error(err);
-        observer.next(img);   // just ignore
+        observer.next(null);   // just ignore
         observer.complete();
       } 
     }

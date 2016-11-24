@@ -1,0 +1,41 @@
+$fadeColor: rgba(255,255,255,0.54);
+$lightFade: rgba(255,255,255,0.07);
+$highlight: #4caf50;
+
+md-card {
+  margin: 8px;
+  max-width: 214px;
+
+  [md-card-image]:first-child {
+    border-radius: 2px 2px 0 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    div.image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  md-card-content {
+
+    h3 {
+      font-size: 16px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    a:hover {
+      color: $fadeColor; 
+    }
+
+    .secondary {
+      color: $fadeColor;
+    }
+  }
+}

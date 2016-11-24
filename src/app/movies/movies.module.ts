@@ -21,6 +21,7 @@ import {
 } from './services';
 
 import { moviesRouting } from './movies.routing';
+import { MoviesListItemComponent } from './components/movies-list/movies-list-item/movies-list-item.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { moviesRouting } from './movies.routing';
     MovieDetailComponent,
     MovieSuggestionsComponent,
     MovieTechSpecsComponent,
-    MoviesListImageDirective
+    MoviesListImageDirective,
+    MoviesListItemComponent
   ],
   providers: [
     MoviesListService,

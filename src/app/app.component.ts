@@ -4,8 +4,8 @@ import { Router, Event, NavigationStart,
          NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { Overlay, OverlayState, OverlayRef, Portal, ComponentPortal } from '@angular/material';
 
-//import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { DynContentComponent } from './dyn-content';
@@ -51,6 +51,9 @@ export class AppComponent {
     }
     if (event instanceof (NavigationEnd || NavigationCancel || NavigationError)) {
       this.loadingState.next(false);
+    }
+    if (event instanceof NavigationEnd) {
+      window.scrollTo(0,0);
     }
 
   }

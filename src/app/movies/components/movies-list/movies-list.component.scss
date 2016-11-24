@@ -65,9 +65,17 @@ md-card {
     border-radius: 2px 2px 0 0;
   }
 
-  a {
+  a, a:visited, a:focus {
     text-decoration: none;
     color: inherit;
+
+    div.image-overlay {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
   }
 
   md-card-content {
