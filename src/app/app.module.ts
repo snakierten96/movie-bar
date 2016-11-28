@@ -4,11 +4,21 @@ import { FormsModule }                    from '@angular/forms';
 import { HttpModule }                     from '@angular/http';
 import { MaterialModule, MdIconRegistry } from '@angular/material';
 
+import { applyMiddleware, Store, compose, createStore } from 'redux';
+import { NgRedux, NgReduxModule } from 'ng2-redux';
+import * as createLogger from 'redux-logger';
+
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies';
 import { HomeModule }   from './home';
 import { routing, appRoutingProviders } from './app.routing';
 import { DynContentComponent } from './dyn-content';
+import { IAppState, rootReducer } from './store';
+
+export const store: Store<IAppState> = createStore(
+  rootReducer,
+  compose(applyMiddleware(createLogger()))
+);
 
 @NgModule({
   declarations: [
@@ -24,6 +34,7 @@ import { DynContentComponent } from './dyn-content';
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
+    NgReduxModule.forRoot(),
     MoviesModule,
     HomeModule
   ],
@@ -35,8 +46,9 @@ import { DynContentComponent } from './dyn-content';
 })
 export class AppModule {
 
-  constructor(mdIconRegistry: MdIconRegistry) {
+  constructor(ngRedux: NgRedux<IAppState>, mdIconRegistry: MdIconRegistry) {
     mdIconRegistry.registerFontClassAlias('fontawesome','fa');
+    ngRedux.provideStore(store);
   }
       
 }

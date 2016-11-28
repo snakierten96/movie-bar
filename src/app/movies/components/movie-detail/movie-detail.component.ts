@@ -30,6 +30,13 @@ import { IMovie } from '../../movie.types';
           opacity: 0,
           transform: 'scale(.95)'
         }))
+      ]),
+      transition('* => *', [ 
+        style({ 
+          opacity: 0, 
+          transform: 'scale(.95)'
+        }), 
+        animate('1s ease-in')
       ])
     ])
   ]
